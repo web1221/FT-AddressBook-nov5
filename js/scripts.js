@@ -64,13 +64,16 @@ function displayContactDetails(addressBookToDisplay) {
     htmlForContactInfo = "";
     htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName +"</li>";
 
-    if(contact.type === "work"){
-      contactsWork.html(htmlForContactInfo);
-    } else if(contact.type === "school"){
-      contactsSchool.html(htmlForContactInfo);
-    } else if(contact.type === "personal"){
-      contactsList.html(htmlForContactInfo);
-    }
+    addressBookToDisplay.contacts.forEach(function(contact){
+      if(contact.type === "work"){
+        contactsWork.html(htmlForContactInfo);
+      } else if(contact.type === "school"){
+        contactsSchool.html(htmlForContactInfo);
+      } else if(contact.type === "personal"){
+        contactsList.html(htmlForContactInfo);
+      }
+
+    });
   });
 
 
