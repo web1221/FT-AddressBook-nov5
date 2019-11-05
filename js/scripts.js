@@ -61,15 +61,19 @@ function displayContactDetails(addressBookToDisplay) {
   console.log("DisplayContactsDetail:", addressBookToDisplay.contacts);
   var htmlForContactInfo = "";
   addressBookToDisplay.contacts.forEach(function(contact) {
+    htmlForContactInfo = "";
     htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName +"</li>";
-    console.log(contact.type);
+
     if(contact.type === "work"){
       contactsWork.html(htmlForContactInfo);
     } else if(contact.type === "school"){
       contactsSchool.html(htmlForContactInfo);
-    } else
-    contactsList.html(htmlForContactInfo);
+    } else if(contact.type === "personal"){
+      contactsList.html(htmlForContactInfo);
+    }
   });
+
+
 
 
 
@@ -94,12 +98,19 @@ function attachContactListeners() {
   $("ul#contacts").on("click", "li", function() {
     showContact(this.id);
   });
+  $("ul#contactsWork").on("click", "li", function() {
+    showContact(this.id);
+  });
+  $("ul#contactsSchool").on("click", "li", function() {
+    showContact(this.id);
+  });
   $("#buttons").on("click", ".deleteButton", function() {
    addressBook.deleteContact(this.id);
    $("#show-contact").hide();
    displayContactDetails(addressBook);
  });
 };
+
 function resetFields() {
   $('input#new-first-name').val("");
   $('input#new-last-name').val("");
