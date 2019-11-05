@@ -58,29 +58,24 @@ function displayContactDetails(addressBookToDisplay) {
   var contactsList = $("ul#contacts");
   var contactsWork = $("ul#contactsWork");
   var contactsSchool = $("ul#contactsSchool");
-  console.log("DisplayContactsDetail:", addressBookToDisplay.contacts);
-  var htmlForContactInfo = "";
+  contactsWork.text("")
+  contactsSchool.text("")
+  contactsList.text("")
+
   addressBookToDisplay.contacts.forEach(function(contact) {
-    htmlForContactInfo = "";
+    var htmlForContactInfo = "";
     htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName +"</li>";
+    if(contact.type === "work"){
+      contactsWork.append(htmlForContactInfo);
+    } else if(contact.type === "school"){
+      contactsSchool.append(htmlForContactInfo);
 
-    addressBookToDisplay.contacts.forEach(function(contact){
-      if(contact.type === "work"){
-        contactsWork.html(htmlForContactInfo);
-      } else if(contact.type === "school"){
-        contactsSchool.html(htmlForContactInfo);
-      } else if(contact.type === "personal"){
-        contactsList.html(htmlForContactInfo);
-      }
+    } else if(contact.type === "personal"){
+      contactsList.append(htmlForContactInfo);
 
-    });
+    }
+
   });
-
-
-
-
-
-
 };
 
 function showContact(contactId) {
